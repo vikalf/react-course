@@ -6,7 +6,6 @@ import Person from './Person/Person'
 import Validation from './Validation/Validation'
 import Char from './CharComp/CharComp'
 
-
 class App extends Component {
 
   state = {
@@ -107,7 +106,7 @@ class App extends Component {
     }
   }
 
-  
+
 
   changeInputAreaCount = (event) => {
     const value = event.target.value;
@@ -122,31 +121,38 @@ class App extends Component {
     let result = '';
 
     for (let i = 0; i < inputStr.length; i++) {
-
       if (index !== i) {
         result = result.concat(inputStr[i])
       }
-
     }
-
     this.setState({ inputValue: result });
-
   }
 
 
   getCharactersArea = () => {
 
-    const inputText = this.state.inputValue;
+    const classes = ['Char'];
 
+    const inputText = this.state.inputValue;
     let charAreas = [];
+
+    if (this.state.inputValue.length <= 4) {
+      classes.push('red');
+    }
+
+    if (this.state.inputValue.length <= 2) {
+      classes.push('bold');
+    }
+
 
     for (let index = 0; index < inputText.length; index++) {
       charAreas.push((
-      <Char className="Char" 
-      character={inputText[index]}
-      clickCharacter={(event) => this.removeCharacter(event, index)}
-      key={index}>
-      </Char>
+        <Char
+          classes={classes}
+          character={inputText[index]}
+          clickCharacter={(event) => this.removeCharacter(event, index)}
+          key={index}>
+        </Char>
       ));
     }
 
@@ -165,7 +171,7 @@ class App extends Component {
   }
 
   render() {
-
+    
     const userNameArea = this.getUserNameArea();
     const personsArea = this.getPersonsArea();
     const inputCountArea = this.getInputCountArea();
@@ -173,14 +179,13 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Username Assignment</h1>
-        <button onClick={this.toggleUsernameHandler}>{this.state.showUsername ? 'Hide' : 'Show'}</button>
+        <button className="button" onClick={this.toggleUsernameHandler}>{this.state.showUsername ? 'Hide' : 'Show'}</button>
         {userNameArea}
         <hr></hr>
-        <button onClick={this.togglePersonsHandler}>{this.state.showPersons ? 'Hide' : 'Show'}</button>
+        <button className="button" onClick={this.togglePersonsHandler}>{this.state.showPersons ? 'Hide' : 'Show'}</button>
         {personsArea}
         <hr></hr>
         {inputCountArea}
-
       </div>
     );
   }
