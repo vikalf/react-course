@@ -1,0 +1,29 @@
+.person {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 16px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.person-delete-btn {
+
+    background-color: white;
+    font: inherit;
+    border: 1px solid red;
+    padding: 4px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.person-delete-btn:hover {
+    background-color: red;
+    color: white;
+}
